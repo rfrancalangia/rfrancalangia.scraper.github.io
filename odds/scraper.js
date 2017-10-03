@@ -49,7 +49,7 @@ exports.imgScrapeCB = (url,cb) => {
 }
 
 //Promise
-exports.imgScrapePromise = (url) => {
+exports.ScrapePromiseTables = (url) => {
   return new Promise((resolve, reject) =>{
     request(url,(error,resp,body)=>{
       if(error){
@@ -57,6 +57,12 @@ exports.imgScrapePromise = (url) => {
       }
       var $ = cheerio.load(body);
       var $url = url;
+      let tables = $('#my-teams-table').html();
+      console.log(tables);
+      resolve(tables);
+      });
+    })
+  }
       // var divs = [];
       // var east = [];
       // var divNBA = $('tbody .stathead td').each(function(i, element){
@@ -110,9 +116,3 @@ exports.imgScrapePromise = (url) => {
     //   team: $Team
     // }
     // console.log("Scarped from scraper.js", image);
-    let tables = $('#my-teams-table').html();
-    console.log(tables);
-    resolve(tables);
-    });
-  })
-}
