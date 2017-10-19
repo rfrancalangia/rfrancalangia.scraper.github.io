@@ -12,7 +12,7 @@
 const scraper = require('./scraper');
 const team = require('./team');
 const fs = require('fs');
-const path = 'odds.html';
+const path = 'odds.txt';
 const url = "http://www.espn.com/nba/lines/_/type/futures";
 
 //Callback Example
