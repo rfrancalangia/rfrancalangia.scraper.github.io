@@ -49,7 +49,7 @@ exports.imgScrapeCB = (url,cb) => {
 }
 
 //Promise
-exports.ScrapePromiseTables = (url) => {
+exports.ScrapePromiseTables = (url, target) => {
   return new Promise((resolve, reject) =>{
     request(url,(error,resp,body)=>{
       if(error){
@@ -57,8 +57,9 @@ exports.ScrapePromiseTables = (url) => {
       }
       var $ = cheerio.load(body);
       var $url = url;
-      let tables = $('#my-teams-table').html();
-      console.log(tables);
+      // let tables = $('#my-teams-table').html();
+      let tables = $(target).html();
+      // console.log(tables);
       resolve(tables);
       });
     })

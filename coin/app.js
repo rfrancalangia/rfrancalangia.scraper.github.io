@@ -32,7 +32,6 @@ function Coin(newName, newExchange, newPair){
   }
 }
 
-
 bittrex.options({
   'apikey': API_KEY,
   'apisecret': API_SECRET
@@ -50,17 +49,14 @@ app.use(async ctx => {
       if (err){
         return console.log(err);
       }
+      fs.writeFileSync(file, "");
       for(var i in data.result){
         var holderCoin = new Coin(data.result[i].BaseCurrency,"BitTrex", data.result[i].BaseCurrency+'-'+data.result[i].MarketCurrency);
         coinArray.push(holderCoin);
-      }
-      fs.writeFileSync(file, "");
-      for (i = 0; i < coinArray.length; i++){
-        fs.appendFileSync(file, JSON.stringify(coinArray[i]));
+        fs.appendFileSync(file, JSON.stringify(holderCoin));
         fs.appendFileSync(file, "\n");
       }
-      // fs.writeFileSync(file, JSON.stringify(coinArray));
-      console.log("Number of Coins: " + coinArray.length);
+      console.log("Finished: number of Coins: " + coinArray.length);
     });
   } else {
     ctx.body = 'Not Found';
