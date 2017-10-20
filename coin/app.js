@@ -4,7 +4,7 @@
 *  Created By : rfrancalangia
 *
 *  Creation Date : 10-19-2017
-*  Last Modified : Thu Oct 19 10:42:04 2017
+*  Last Modified : Thu Oct 19 20:31:05 2017
 *  Description : This is an app that scrapes the desired
 *  information from BitTrex and returns it in a JSON file.
 *
