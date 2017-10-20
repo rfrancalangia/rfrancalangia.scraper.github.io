@@ -51,17 +51,21 @@ app.use(async ctx => {
         return console.log(err);
       }
       for(var i in data.result){
-        var holderCoin = new Coin(data.result[i].BaseCurrency,
-          "BitTrex", data.result[i].BaseCurrency+'-'+data.result[i].MarketCurrency);
-          coinArray.push(holderCoin);
-        }
-          fs.writeFileSync(file, JSON.stringify(coinArray));
-        console.log("Number of Coins: " + coinArray.length);
-      });
-    } else {
-      ctx.body = 'Not Found';
-      ctx.status = 404;
-    }
-  });
+        var holderCoin = new Coin(data.result[i].BaseCurrency,"BitTrex", data.result[i].BaseCurrency+'-'+data.result[i].MarketCurrency);
+        coinArray.push(holderCoin);
+      }
+      fs.writeFileSync(file, "");
+      for (i = 0; i < coinArray.length; i++){
+        fs.appendFileSync(file, JSON.stringify(coinArray[i]));
+        fs.appendFileSync(file, "\n");
+      }
+      // fs.writeFileSync(file, JSON.stringify(coinArray));
+      console.log("Number of Coins: " + coinArray.length);
+    });
+  } else {
+    ctx.body = 'Not Found';
+    ctx.status = 404;
+  }
+});
 
-  app.listen(3000);
+app.listen(3000);
