@@ -53,9 +53,10 @@ app.use(async ctx => {
       for(var i in data.result){
         var holderCoin = new Coin(data.result[i].BaseCurrency,"BitTrex", data.result[i].BaseCurrency+'-'+data.result[i].MarketCurrency);
         coinArray.push(holderCoin);
-        fs.appendFileSync(file, JSON.stringify(holderCoin));
-        fs.appendFileSync(file, "\n");
+        // fs.appendFileSync(file, JSON.stringify(holderCoin));
+        // fs.appendFileSync(file, "\n");
       }
+      fs.writeFileSync(file, JSON.stringify(coinArray));
       console.log("Finished: number of Coins: " + coinArray.length);
     });
   } else {
